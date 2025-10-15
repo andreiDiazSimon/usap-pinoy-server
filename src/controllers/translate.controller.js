@@ -1,7 +1,6 @@
 import { GoogleGenAI } from "@google/genai";
 
-const ai = new GoogleGenAI({
-});
+const ai = new GoogleGenAI({});
 
 export const translateController = async (req, res) => {
   try {
@@ -11,13 +10,14 @@ export const translateController = async (req, res) => {
     const prompt = `output only ${fromLang} to ${toLang}: ${textToTranslate}`;
 
     const response = await ai.models.generateContent({
-      model: "gemini-2.0-flash",
+      model: "gemini-2.5-pro",
       contents: prompt,
     });
 
     console.log("AI response:", response);
 
     const translated = response.text;
+    console.log("translated text: ", translated);
 
     res.json({
       translation: translated,
@@ -27,4 +27,3 @@ export const translateController = async (req, res) => {
     res.status(500).json({ error: "Translation failed" });
   }
 };
-
