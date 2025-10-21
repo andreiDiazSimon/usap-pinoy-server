@@ -10,7 +10,7 @@ export const translateController = async (req, res) => {
     const prompt = `output only ${fromLang} to ${toLang}: ${textToTranslate}`;
 
     const response = await ai.models.generateContent({
-      model: "gemini-2.5-pro",
+      model: "gemini-2.0-flash",
       contents: prompt,
     });
 

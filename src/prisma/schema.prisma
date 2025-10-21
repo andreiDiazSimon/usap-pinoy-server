@@ -8,17 +8,17 @@ generator client {
 }
 
 model User {
-  id         Int         @id @default(autoincrement())
-  username   String      @unique
-  email      String      @unique
-  password   String
-  favorites  Favorite[]
+  id        Int        @id @default(autoincrement())
+  username  String     @unique
+  email     String     @unique
+  password  String
+  favorites Favorite[]
 }
 
 model Favorite {
-  id      Int    @id @default(autoincrement())
+  id      Int     @id @default(autoincrement())
   text    String
+  from_to String?
   userId  Int
-  user    User   @relation(fields: [userId], references: [id])
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
-
