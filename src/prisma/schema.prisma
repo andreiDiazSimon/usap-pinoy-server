@@ -16,9 +16,10 @@ model User {
 }
 
 model Favorite {
-  id      Int     @id @default(autoincrement())
-  text    String
-  from_to String?
-  userId  Int
-  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id       Int     @id @default(autoincrement())
+  ogText   String?   // 🔹 New column for the original text
+  text     String
+  from_to  String?
+  userId   Int
+  user     User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

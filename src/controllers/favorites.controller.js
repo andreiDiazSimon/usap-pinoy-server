@@ -2,7 +2,7 @@ import prisma from '../prisma/prismaClient.js';
 
 export const addFavoriteController = async (req, res) => {
   try {
-    const { userId, text, fromLang, toLang } = req.body;
+    const { userId, ogText, text, fromLang, toLang } = req.body;
 
     if (!userId || !text) {
       return res.status(400).json({ error: "userId and text are required" });
@@ -12,6 +12,7 @@ export const addFavoriteController = async (req, res) => {
 
     const favorite = await prisma.favorite.create({
       data: {
+        ogText, // ✅ Save the original input text
         text,
         from_to,
         user: { connect: { id: userId } },
